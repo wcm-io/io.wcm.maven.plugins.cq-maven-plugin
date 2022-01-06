@@ -1,6 +1,7 @@
 <img src="https://wcm.io/images/favicon-16@2x.png"/> cq-maven-plugin
 ======
 [![Build](https://github.com/wcm-io/io.wcm.maven.plugins.cq-maven-plugin/workflows/Build/badge.svg?branch=develop)](https://github.com/wcm-io/io.wcm.maven.plugins.cq-maven-plugin/actions?query=workflow%3ABuild+branch%3Adevelop)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm.maven.plugins/cq-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm.maven.plugins/cq-maven-plugin)
 
 Convenience maven plugin for working with CQ/AEM maven projects.
 
