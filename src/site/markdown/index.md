@@ -22,7 +22,7 @@ With one goal it installs the current project (bundle or content package) and de
 
 ### GitHub Repository
 
-Sources: https://github.com/wcm-io/cq-maven-plugin
+Sources: https://github.com/wcm-io/io.wcm.maven.plugins.cq-maven-plugin
 
 
 [usage]: usage.html
