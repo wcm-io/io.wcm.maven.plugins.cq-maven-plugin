@@ -128,8 +128,7 @@ public class InstallMojo extends AbstractMojo {
 
     // check for active bnd-maven-plugin in current project
     return project.getBuildPlugins().stream()
-        .filter(this::isBndMavenPlugin)
-        .findFirst().isPresent();
+        .anyMatch(this::isBndMavenPlugin);
   }
 
   private boolean isBndMavenPlugin(Plugin plugin) {
