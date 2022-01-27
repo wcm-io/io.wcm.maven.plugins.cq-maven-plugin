@@ -128,8 +128,7 @@ public class InstallMojo extends AbstractMojo {
 
     // check for active bnd-maven-plugin in current project
     return project.getBuildPlugins().stream()
-        .filter(this::isBndMavenPlugin)
-        .findFirst().isPresent();
+        .anyMatch(this::isBndMavenPlugin);
   }
 
   private boolean isBndMavenPlugin(Plugin plugin) {
@@ -144,7 +143,6 @@ public class InstallMojo extends AbstractMojo {
 
   /**
    * Executes the sling-maven-plugin directly from the current project.
-   * @throws MojoExecutionException
    */
   private void executeSlingPluginDirectly() throws MojoExecutionException {
 
