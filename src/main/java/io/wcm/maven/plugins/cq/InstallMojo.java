@@ -154,8 +154,8 @@ public class InstallMojo extends AbstractMojo {
     try {
       PluginDescriptor pluginDescriptor = pluginManager.getPluginDescriptor(plugin,
           project.getRemotePluginRepositories(), session.getRepositorySession());
-      MojoDescriptor mojoDescriptor = pluginDescriptor.getMojo("install");
-      MojoExecution mojoExecution = new MojoExecution(pluginDescriptor.getMojo("install"));
+      MojoDescriptor mojoDescriptor = pluginDescriptor.getMojo("install-file");
+      MojoExecution mojoExecution = new MojoExecution(pluginDescriptor.getMojo("install-file"));
 
       Xpp3Dom config = convertConfiguration(mojoDescriptor.getMojoConfiguration());
       config.getChild("slingUrl").setValue(this.slingConsoleUrl);
@@ -201,8 +201,8 @@ public class InstallMojo extends AbstractMojo {
     invocationRequest.setProperties(session.getUserProperties());
     invocationRequest.setProfiles(settings.getActiveProfiles());
 
+    setupInvokerLogger(invocationRequest);
     Invoker invoker = new DefaultInvoker();
-    setupInvokerLogger(invoker);
 
     try {
       InvocationResult invocationResult = invoker.execute(invocationRequest);
@@ -221,11 +221,11 @@ public class InstallMojo extends AbstractMojo {
 
   /**
    * Mirror maven execution log output to current maven logger.
-   * @param invoker Invoker
+   * @param request Invocation request
    */
-  private void setupInvokerLogger(Invoker invoker) {
+  private void setupInvokerLogger(InvocationRequest request) {
     Log log = getLog();
-    invoker.setOutputHandler(new InvocationOutputHandler() {
+    request.setOutputHandler(new InvocationOutputHandler() {
       @Override
       public void consumeLine(String line) {
         if (StringUtils.startsWith(line, "[ERROR] ")) {
