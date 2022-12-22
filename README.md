@@ -7,7 +7,7 @@
 Convenience maven plugin for working with CQ/AEM maven projects.
 
 Documentation: https://wcm.io/tooling/maven/plugins/cq-maven-plugin/<br/>
-Issues: https://wcm-io.atlassian.net/browse/WTOOL<br/>
+Issues: https://github.com/wcm-io/io.wcm.maven.plugins.cq-maven-plugin/issues<br/>
 Wiki: https://wcm-io.atlassian.net/wiki/<br/>
 Continuous Integration: https://github.com/wcm-io/io.wcm.maven.plugins.cq-maven-plugin/actions<br/>
 Commercial support: https://wcm.io/commercial-support.html
