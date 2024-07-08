@@ -20,7 +20,6 @@
 package io.wcm.maven.plugins.cq;
 
 import java.io.File;
-import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.execution.MavenSession;
@@ -44,7 +43,6 @@ import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.Settings;
 import org.apache.maven.shared.invoker.DefaultInvocationRequest;
 import org.apache.maven.shared.invoker.DefaultInvoker;
-import org.apache.maven.shared.invoker.InvocationOutputHandler;
 import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.InvocationResult;
 import org.apache.maven.shared.invoker.Invoker;
@@ -144,6 +142,7 @@ public class InstallMojo extends AbstractMojo {
   /**
    * Executes the sling-maven-plugin directly from the current project.
    */
+  @SuppressWarnings({ "java:S1181", "checkstyle:IllegalCatch" }) // allow catch of throwable
   private void executeSlingPluginDirectly() throws MojoExecutionException {
 
     Plugin plugin = new Plugin();
@@ -165,8 +164,8 @@ public class InstallMojo extends AbstractMojo {
       mojoExecution.setConfiguration(config);
 
       buildPluginManager.executeMojo(session, mojoExecution);
-    } /*CHECKSTYLE:OFF*/
-    catch (Throwable ex) { /*CHECKSTYLE_ON*/
+    }
+    catch (Throwable ex) {
       throw new MojoExecutionException("Faild to execute plugin: " + plugin, ex);
     }
 
@@ -187,12 +186,12 @@ public class InstallMojo extends AbstractMojo {
   /**
    * Invoke maven for the current project with all it's setting and the given goal.
    * @param goal Goal
-   * @throws MojoExecutionException
+   * @throws MojoExecutionException Mojo execution exception
    */
   private void executeWithMavenInvoker(String goal) throws MojoExecutionException {
     InvocationRequest invocationRequest = new DefaultInvocationRequest();
     invocationRequest.setPomFile(project.getFile());
-    invocationRequest.setGoals(Arrays.asList(goal));
+    invocationRequest.addArg(goal);
     invocationRequest.setBatchMode(true);
 
     // take over all systems properties and profile settings from current maven execution
@@ -225,24 +224,21 @@ public class InstallMojo extends AbstractMojo {
    */
   private void setupInvokerLogger(InvocationRequest request) {
     Log log = getLog();
-    request.setOutputHandler(new InvocationOutputHandler() {
-      @Override
-      public void consumeLine(String line) {
-        if (StringUtils.startsWith(line, "[ERROR] ")) {
-          log.error(StringUtils.substringAfter(line, "[ERROR] "));
-        }
-        else if (StringUtils.startsWith(line, "[WARNING] ")) {
-          log.warn(StringUtils.substringAfter(line, "[WARNING] "));
-        }
-        else if (StringUtils.startsWith(line, "[INFO] ")) {
-          log.info(StringUtils.substringAfter(line, "[INFO] "));
-        }
-        else if (StringUtils.startsWith(line, "[DEBUG] ")) {
-          log.debug(StringUtils.substringAfter(line, "[DEBUG] "));
-        }
-        else {
-          log.info(line);
-        }
+    request.setOutputHandler(line -> {
+      if (StringUtils.startsWith(line, "[ERROR] ")) {
+        log.error(StringUtils.substringAfter(line, "[ERROR] "));
+      }
+      else if (StringUtils.startsWith(line, "[WARNING] ")) {
+        log.warn(StringUtils.substringAfter(line, "[WARNING] "));
+      }
+      else if (StringUtils.startsWith(line, "[INFO] ")) {
+        log.info(StringUtils.substringAfter(line, "[INFO] "));
+      }
+      else if (StringUtils.startsWith(line, "[DEBUG] ")) {
+        log.debug(StringUtils.substringAfter(line, "[DEBUG] "));
+      }
+      else {
+        log.info(line);
       }
     });
   }
