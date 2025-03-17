@@ -47,7 +47,7 @@
 
   <properties>
     <site.url.module.prefix>tooling/maven/plugins/cq-maven-plugin</site.url.module.prefix>
-    <maven.version>3.5.0</maven.version>
+    <maven.version>3.9.9</maven.version>
 
     <!-- Enable reproducible builds -->
     <project.build.outputTimestamp>2022-08-29T10:38:54Z</project.build.outputTimestamp>
