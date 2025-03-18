@@ -4,5 +4,8 @@
     "github>wcm-io/renovate-config:maven",
     "github>wcm-io/renovate-config:automerge-parent",
     "github>wcm-io/renovate-config:automerge-testing"
+  ],
+  "ignoreDeps": [
+    "io.wcm.maven:io.wcm.maven.aem-global-parent"
   ]
 }
