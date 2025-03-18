@@ -25,7 +25,8 @@
   <parent>
     <groupId>io.wcm.maven</groupId>
     <artifactId>io.wcm.maven.aem-global-parent</artifactId>
-    <version>2.0.14</version>
+    <!-- Stick with version 2.1.2 because later version conflict with the integration test setup in this pom -->
+    <version>2.1.2</version>
     <relativePath/>
   </parent>
 
