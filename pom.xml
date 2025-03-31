@@ -31,7 +31,7 @@
 
   <groupId>io.wcm.maven.plugins</groupId>
   <artifactId>cq-maven-plugin</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.2.2</version>
   <packaging>maven-plugin</packaging>
 
   <name>CQ Maven Plugin</name>
@@ -50,7 +50,7 @@
     <maven.version>3.5.0</maven.version>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>2022-08-29T10:38:54Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2025-03-31T14:45:27Z</project.build.outputTimestamp>
 
     <!-- Enable recording of coverage during execution of maven-invoker-plugin -->
     <jacoco.propertyName>invoker.mavenOpts</jacoco.propertyName>
