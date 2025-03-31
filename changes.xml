@@ -24,7 +24,7 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
-    <release version="1.2.2" date="not released">
+    <release version="1.2.2" date="2025-03-31">
       <action type="update" dev="sseifert">
         Switch to Java 11 as minimum version.
       </action>
@@ -32,7 +32,7 @@
 
     <release version="1.2.0" date="2022-08-29">
       <action type="update" dev="sseifert">
-        Use "sling:install-file" instead of "sling:install" goal to be compatbile with sling-maven-plugin 3.x.
+        Use "sling:install-file" instead of "sling:install" goal to be compatible with sling-maven-plugin 3.x.
       </action>
     </release>
 
