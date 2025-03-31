@@ -25,7 +25,8 @@
   <parent>
     <groupId>io.wcm.maven</groupId>
     <artifactId>io.wcm.maven.aem-global-parent</artifactId>
-    <version>2.0.14</version>
+    <!-- Stick with version 2.1.2 because later version conflict with the integration test setup in this pom -->
+    <version>2.1.2</version>
     <relativePath/>
   </parent>
 
@@ -35,8 +36,7 @@
   
   <properties>
     <!-- Java version -->
-    <java.version>1.8</java.version>
-    <build.compiler.release>8</build.compiler.release>
+    <java.version>11</java.version>
 
     <!-- Test against 3.x version of sling-maven-plugin (can be removed when updated to aem-global-parent 2.0.16 or higher) -->
     <sling.sling-maven-plugin.version>3.0.2</sling.sling-maven-plugin.version>
@@ -83,7 +83,7 @@
       <plugin>
           <groupId>uk.co.automatictester</groupId>
           <artifactId>wiremock-maven-plugin</artifactId>
-          <version>7.0.0</version>
+          <version>7.3.0</version>
           <executions>
              <execution>
                 <goals>
@@ -98,9 +98,9 @@
           </executions>
           <dependencies>
              <dependency>
-                <groupId>com.github.tomakehurst</groupId>
+                <groupId>org.wiremock</groupId>
                 <artifactId>wiremock</artifactId>
-                <version>2.27.1</version>
+                <version>3.12.1</version>
              </dependency>
           </dependencies>
        </plugin>

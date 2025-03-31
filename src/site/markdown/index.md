@@ -27,4 +27,4 @@ Sources: https://github.com/wcm-io/io.wcm.maven.plugins.cq-maven-plugin
 
 [usage]: usage.html
 [plugindocs]: plugin-info.html
-[changelog]: changes-report.html
+[changelog]: changes.html
