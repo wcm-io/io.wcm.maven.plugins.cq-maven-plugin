@@ -21,7 +21,10 @@ package io.wcm.maven.plugins.cq;
 
 import java.io.File;
 
+import javax.inject.Inject;
+
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.plugin.AbstractMojo;
@@ -33,7 +36,6 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
 import org.apache.maven.plugin.descriptor.PluginDescriptor;
 import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Execute;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -95,9 +97,9 @@ public class InstallMojo extends AbstractMojo {
   @Parameter(defaultValue = "${session}", readonly = true)
   private MavenSession session;
 
-  @Component(role = MavenPluginManager.class)
+  @Inject
   private MavenPluginManager pluginManager;
-  @Component(role = BuildPluginManager.class)
+  @Inject
   private BuildPluginManager buildPluginManager;
 
   @Override
@@ -120,7 +122,7 @@ public class InstallMojo extends AbstractMojo {
   private boolean isBundleProject() {
     // check for "bundle" packaging as used by maven-bundle-plugin
     String packaging = project.getPackaging();
-    if (StringUtils.equals(packaging, "bundle")) {
+    if (Strings.CS.equals(packaging, "bundle")) {
       return true;
     }
 
@@ -130,13 +132,13 @@ public class InstallMojo extends AbstractMojo {
   }
 
   private boolean isBndMavenPlugin(Plugin plugin) {
-    return StringUtils.equals(plugin.getGroupId(), "biz.aQute.bnd")
-        && StringUtils.equals(plugin.getArtifactId(), "bnd-maven-plugin");
+    return Strings.CS.equals(plugin.getGroupId(), "biz.aQute.bnd")
+        && Strings.CS.equals(plugin.getArtifactId(), "bnd-maven-plugin");
   }
 
   private boolean isContentPackageProject() {
     String packaging = project.getPackaging();
-    return StringUtils.equals(packaging, "content-package");
+    return Strings.CS.equals(packaging, "content-package");
   }
 
   /**
@@ -225,16 +227,16 @@ public class InstallMojo extends AbstractMojo {
   private void setupInvokerLogger(InvocationRequest request) {
     Log log = getLog();
     request.setOutputHandler(line -> {
-      if (StringUtils.startsWith(line, "[ERROR] ")) {
+      if (Strings.CS.startsWith(line, "[ERROR] ")) {
         log.error(StringUtils.substringAfter(line, "[ERROR] "));
       }
-      else if (StringUtils.startsWith(line, "[WARNING] ")) {
+      else if (Strings.CS.startsWith(line, "[WARNING] ")) {
         log.warn(StringUtils.substringAfter(line, "[WARNING] "));
       }
-      else if (StringUtils.startsWith(line, "[INFO] ")) {
+      else if (Strings.CS.startsWith(line, "[INFO] ")) {
         log.info(StringUtils.substringAfter(line, "[INFO] "));
       }
-      else if (StringUtils.startsWith(line, "[DEBUG] ")) {
+      else if (Strings.CS.startsWith(line, "[DEBUG] ")) {
         log.debug(StringUtils.substringAfter(line, "[DEBUG] "));
       }
       else {
