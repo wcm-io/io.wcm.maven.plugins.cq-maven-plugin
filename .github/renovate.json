@@ -7,6 +7,9 @@
     "github>wcm-io/renovate-config:automerge-testing"
   ],
   "ignoreDeps": [
-    "io.wcm.maven:io.wcm.maven.aem-global-parent"
+    "io.wcm.maven:io.wcm.maven.aem-global-parent",
+    "org.apache.maven:maven-plugin-api",
+    "org.apache.maven:maven-core",
+    "org.apache.maven.plugins:maven-plugin-plugin"
   ]
 }
