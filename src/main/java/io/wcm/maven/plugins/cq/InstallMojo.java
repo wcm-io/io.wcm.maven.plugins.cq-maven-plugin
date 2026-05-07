@@ -63,6 +63,7 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
     requiresProject = true,
     threadSafe = true)
 @Execute(phase = LifecyclePhase.INSTALL)
+@SuppressWarnings("java:S6813") // allow field injection
 public class InstallMojo extends AbstractMojo {
 
   /**
@@ -145,8 +146,8 @@ public class InstallMojo extends AbstractMojo {
    * Executes the sling-maven-plugin directly from the current project.
    */
   @SuppressWarnings({
-      "java:S1181", "checkstyle:IllegalCatch"
-  }) // allow catch of throwable
+      "java:S1181", "checkstyle:IllegalCatch", "PMD.AvoidCatchingGenericException" // allow catch of throwable
+  })
   private void executeSlingPluginDirectly() throws MojoExecutionException {
 
     Plugin plugin = new Plugin();
@@ -192,6 +193,7 @@ public class InstallMojo extends AbstractMojo {
    * @param goal Goal
    * @throws MojoExecutionException Mojo execution exception
    */
+  @SuppressWarnings("PMD.ExceptionAsFlowControl")
   private void executeWithMavenInvoker(String goal) throws MojoExecutionException {
     InvocationRequest invocationRequest = new DefaultInvocationRequest();
     invocationRequest.setPomFile(project.getFile());
